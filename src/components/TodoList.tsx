@@ -1,0 +1,30 @@
+import React from 'react';
+import TodoItem from './TodoItem';
+
+interface Todo {
+    id: number;
+    title: string;
+    completed: boolean;
+}
+
+interface TodoListProps {
+    todos: Todo[];
+    toggleTodo: (id: number) => void;
+}
+
+const TodoList: React.FC<TodoListProps> = ({ todos, toggleTodo }) => {
+    return (
+        <ul>
+            {todos.map(todo => (
+                <TodoItem 
+                    key={todo.id} 
+                    title={todo.title} 
+                    completed={todo.completed} 
+                    toggleTodo={() => toggleTodo(todo.id)} 
+                />
+            ))}
+        </ul>
+    );
+};
+
+export default TodoList;
